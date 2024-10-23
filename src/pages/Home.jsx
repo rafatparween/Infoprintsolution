@@ -119,6 +119,7 @@
 import Contents from './Content';
 import CustomerReviews from './CustomerReviews';
 import Disclaimer from './Disclaimer';
+import Goodlooking from './Goodlooking';
 import Header from './Header';
 import PrinterSetup from './PrinterSetup';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -219,9 +220,12 @@ const Home = () => {
       {/* <Contents/>
       <Banner/> */}
       <Header/>
+      <Goodlooking/>
+    
       
       
       <PrinterSetup />
+      
       <CustomerReviews />
      
       <Disclaimer />

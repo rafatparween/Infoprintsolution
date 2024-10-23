@@ -149,7 +149,7 @@ function Header() {
 
   return (
     <div className="w-full mt-10">
-      <h1 className="text-2xl font-semibold mb-4 text-center h-[38px]">Explore all categories</h1>
+      <h1 className="text-2xl font-semibold mb-4 text-center h-[38px]">Explore all Printers</h1>
       <div className="relative">
         {/* Left Arrow */}
         <button

@@ -337,139 +337,263 @@
 
 
 // Home.js
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Printer, Wifi, Settings, HelpCircle } from 'lucide-react';
-import Banner from './Banner';
-import Floating from './Floating';
+// import React, { useState } from 'react';
+// import { motion, AnimatePresence } from 'framer-motion';
+// import { Printer, Wifi, Settings, HelpCircle } from 'lucide-react';
+// import Banner from './Banner';
+// import Floating from './Floating';
 
 
-const Contents = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [direction, setDirection] = useState(0);
+// const Contents = () => {
+//   const [currentSlide, setCurrentSlide] = useState(0);
+//   const [direction, setDirection] = useState(0);
 
-  const slides = [
-    {
-      title: 'Smart Printing Solutions',
-      subtitle: 'Connect. Configure. Print.',
-      color: 'from-blue-600 to-purple-600',
-      icon: <Printer className="w-16 h-16" />,
-    },
-    {
-      title: 'Wireless Setup Made Easy',
-      subtitle: 'One-Click Configuration',
-      color: 'from-purple-600 to-pink-600',
-      icon: <Wifi className="w-16 h-16" />,
-    },
-    {
-      title: 'Enterprise Ready',
-      subtitle: 'Advanced Network Solutions',
-      color: 'from-emerald-600 to-blue-600',
-      icon: <Settings className="w-16 h-16" />,
-    },
-    {
-      title: '24/7 Support',
-      subtitle: "We're Here to Help",
-      color: 'from-orange-600 to-red-600',
-      icon: <HelpCircle className="w-16 h-16" />,
-    },
-  ];
+//   const slides = [
+//     {
+//       title: 'Smart Printing Solutions',
+//       subtitle: 'Connect. Configure. Print.',
+//       color: 'from-blue-600 to-purple-600',
+//       icon: <Printer className="w-16 h-16" />,
+//     },
+//     {
+//       title: 'Wireless Setup Made Easy',
+//       subtitle: 'One-Click Configuration',
+//       color: 'from-purple-600 to-pink-600',
+//       icon: <Wifi className="w-16 h-16" />,
+//     },
+//     {
+//       title: 'Enterprise Ready',
+//       subtitle: 'Advanced Network Solutions',
+//       color: 'from-emerald-600 to-blue-600',
+//       icon: <Settings className="w-16 h-16" />,
+//     },
+//     {
+//       title: '24/7 Support',
+//       subtitle: "We're Here to Help",
+//       color: 'from-orange-600 to-red-600',
+//       icon: <HelpCircle className="w-16 h-16" />,
+//     },
+//   ];
 
-  const slideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
+//   const slideVariants = {
+//     enter: (direction) => ({
+//       x: direction > 0 ? 1000 : -1000,
+//       opacity: 0,
+//       scale: 0.8,
+//     }),
+//     center: {
+//       zIndex: 1,
+//       x: 0,
+//       opacity: 1,
+//       scale: 1,
+//     },
+//     exit: (direction) => ({
+//       zIndex: 0,
+//       x: direction < 0 ? 1000 : -1000,
+//       opacity: 0,
+//       scale: 0.8,
+//     }),
+//   };
+
+//   return (
+//     <div className="relative min-h-screen bg-gray-900 overflow-hidden">
+//       <Banner/>
+
+//       <div className="relative z-10 h-screen flex items-center justify-center">
+//         <AnimatePresence initial={false} custom={direction}>
+//           <motion.div
+//             key={currentSlide}
+//             custom={direction}
+//             variants={slideVariants}
+//             initial="enter"
+//             animate="center"
+//             exit="exit"
+//             transition={{
+//               x: { type: 'spring', stiffness: 300, damping: 30 },
+//               opacity: { duration: 0.5 },
+//             }}
+//             className="absolute inset-0 flex flex-col items-center justify-center text-center"
+//           >
+//             <div
+//               className={`absolute inset-0 bg-gradient-to-r ${slides[currentSlide].color} opacity-70`}
+//             />
+
+//             <div className="relative z-20 text-white px-6">
+//               <motion.div
+//                 initial={{ scale: 0, rotate: -180 }}
+//                 animate={{ scale: 1, rotate: 0 }}
+//                 transition={{ duration: 0.5 }}
+//                 className="mb-8"
+//               >
+//                 {slides[currentSlide].icon}
+//               </motion.div>
+
+//               <Floating text={slides[currentSlide].title} />
+
+//               <motion.p
+//                 initial={{ y: 20, opacity: 0 }}
+//                 animate={{ y: 0, opacity: 1 }}
+//                 transition={{ delay: 0.4 }}
+//                 className="text-xl md:text-2xl mb-8"
+//               >
+//                 {slides[currentSlide].subtitle}
+//               </motion.p>
+
+//               <motion.button
+//                 whileHover={{ scale: 1.05 }}
+//                 whileTap={{ scale: 0.95 }}
+//                 className="bg-white text-gray-900 px-8 py-3 rounded-full text-lg font-semibold"
+//               >
+//                 Start Setup
+//               </motion.button>
+//             </div>
+//           </motion.div>
+//         </AnimatePresence>
+
+//         <div className="absolute bottom-8 flex gap-4">
+//           {slides.map((_, index) => (
+//             <button
+//               key={index}
+//               onClick={() => {
+//                 setDirection(index > currentSlide ? 1 : -1);
+//                 setCurrentSlide(index);
+//               }}
+//               className={`w-3 h-3 rounded-full ${
+//                 index === currentSlide ? 'bg-white' : 'bg-white/50'
+//               }`}
+//             />
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Contents;
+
+
+
+
+import { useState, useEffect } from "react";
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+
+function Contents() {
+  const [slide, setSlide] = useState(0);
+  const [itemWidth, setItemWidth] = useState(0);
+  const [visibleItems, setVisibleItems] = useState(0);
+
+  const [categories] = useState([
+    { 
+      name: "Business Card Printer", 
+      image: "https://img.freepik.com/free-photo/business-card-printer_23-2149628827.jpg?w=1380",
+      description: "Create professional business cards with high-quality prints."
     },
-    exit: (direction) => ({
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8,
-    }),
+    { 
+      name: "Inkjet Printer", 
+      image: "https://img.freepik.com/free-photo/inkjet-printer-office_23-2149628805.jpg?w=1380",
+      description: "Versatile and affordable for home and office use."
+    },
+    { 
+      name: "Heat Press Printer", 
+      image: "https://www.shutterstock.com/shutterstock/photos/2467067641/display_1500/stock-photo-modern-printer-on-chest-of-drawers-in-office-closeup-2467067641.jpg",
+      description: "Perfect for customizing fabrics and apparel."
+    },
+    { 
+      name: "Label Printer", 
+      image: "https://img.freepik.com/free-photo/woman-printing-labels_23-2149713658.jpg?w=1380",
+      description: "Effortlessly print labels for any occasion."
+    },
+    { 
+      name: "3D Printer", 
+      image: "https://as2.ftcdn.net/v2/jpg/05/23/05/29/1000_F_523052940_OekSqfN5SMFdhb1abx2jvoFMwAGoS3HS.jpg",
+      description: "Bring your designs to life with 3D printing technology."
+    },
+    { 
+      name: "T-Shirt Printer", 
+      image: "https://www.shutterstock.com/shutterstock/photos/2277611225/display_1500/stock-photo-woman-loading-paper-into-printer-at-wooden-table-indoors-closeup-2277611225.jpg",
+      description: "Create custom t-shirts for any event or occasion."
+    },
+  ]);
+
+  useEffect(() => {
+    const updateItemWidth = () => {
+      const containerWidth = window.innerWidth;
+      const gap = 16; 
+      const calculatedItemWidth = (containerWidth - (gap * (6 - 1))) / 6; // Adjust for the gap between items
+      setItemWidth(calculatedItemWidth);
+      setVisibleItems(Math.floor(containerWidth / calculatedItemWidth));
+    };
+
+    updateItemWidth();
+    window.addEventListener("resize", updateItemWidth);
+
+    return () => window.removeEventListener("resize", updateItemWidth);
+  }, []);
+
+  const nextSlide = () => {
+    if (slide < categories.length - visibleItems) {
+      setSlide(slide + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (slide > 0) {
+      setSlide(slide - 1);
+    }
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-900 overflow-hidden">
-      <Banner/>
+    <div className="w-full mt-10">
+      <h1 className="text-2xl font-semibold mb-4 text-center">Explore Our Printers</h1>
+      <div className="relative">
+        {/* Left Arrow */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center z-10"
+          disabled={slide === 0}
+        >
+          <FaArrowLeft />
+        </button>
 
-      <div className="relative z-10 h-screen flex items-center justify-center">
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={currentSlide}
-            custom={direction}
-            variants={slideVariants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{
-              x: { type: 'spring', stiffness: 300, damping: 30 },
-              opacity: { duration: 0.5 },
-            }}
-            className="absolute inset-0 flex flex-col items-center justify-center text-center"
+        {/* Categories Carousel */}
+        <div className="overflow-hidden w-full">
+          <div
+            className="flex transition-transform ease-out duration-300"
+            style={{ transform: `translateX(-${slide * (itemWidth + 16)}px)` }} // Adjust translation to account for gap
           >
-            <div
-              className={`absolute inset-0 bg-gradient-to-r ${slides[currentSlide].color} opacity-70`}
-            />
-
-            <div className="relative z-20 text-white px-6">
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
+            {categories.map((cat, index) => (
+              <div
+                key={index}
+                className="shrink-0 text-center mx-2"
+                style={{ width: itemWidth }}
               >
-                {slides[currentSlide].icon}
-              </motion.div>
-
-              <Floating text={slides[currentSlide].title} />
-
-              <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-xl md:text-2xl mb-8"
-              >
-                {slides[currentSlide].subtitle}
-              </motion.p>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-gray-900 px-8 py-3 rounded-full text-lg font-semibold"
-              >
-                Start Setup
-              </motion.button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        <div className="absolute bottom-8 flex gap-4">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setDirection(index > currentSlide ? 1 : -1);
-                setCurrentSlide(index);
-              }}
-              className={`w-3 h-3 rounded-full ${
-                index === currentSlide ? 'bg-white' : 'bg-white/50'
-              }`}
-            />
-          ))}
+                <img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="w-full h-auto rounded-[30px]" 
+                />
+                <div className="mt-2 font-bold">{cat.name}</div>
+                <div className="mt-1 text-gray-600">{cat.description}</div>
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center z-10"
+          disabled={slide === categories.length - visibleItems}
+        >
+          <FaArrowRight />
+        </button>
       </div>
     </div>
   );
-};
+}
 
 export default Contents;
+
 
 
 
